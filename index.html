@@ -3,114 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Somos S/A - Debata. Colabore. Crie. Construa.">
-    <title>Somos S/A - Pesquisa de Opinião</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Somos S/A - Plataforma de investimento comunitário">
+    <title>Somos S/A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Gradiente animado de fundo */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                #1a1a2e 0%, 
+                #16213e 25%, 
+                #0f3460 50%, 
+                #16213e 75%, 
+                #1a1a2e 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container principal */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+        }
+
+        /* Logo */
+        .logo-container {
+            margin-bottom: 80px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .logo {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        /* Texto "Em Breve" */
+        .coming-soon {
+            color: #ffffff;
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: 12px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+            position: relative;
+            display: inline-block;
+        }
+
+        .coming-soon::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4a90e2, transparent);
+            animation: lineGrow 1s ease-out 1.6s both;
+        }
+
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+
+        /* Subtítulo */
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            animation: fadeInUp 1.2s ease-out 0.8s both;
+            margin-top: 50px;
+        }
+
+        /* Pontos decorativos */
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 60px;
+            animation: fadeInUp 1.2s ease-out 1.2s both;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Animações de entrada */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Partículas flutuantes */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .logo {
+                max-width: 400px;
+            }
+
+            .coming-soon {
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                letter-spacing: 1px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                max-width: 280px;
+            }
+
+            .coming-soon {
+                font-size: 1.8rem;
+                letter-spacing: 4px;
+            }
+
+            .coming-soon::after {
+                width: 40px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .logo-container {
+                margin-bottom: 60px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Partículas flutuantes -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Conteúdo principal -->
     <div class="container">
-        <!-- Header -->
-        <header>
+        <div class="logo-container">
             <img src="logo.png" alt="Somos S/A" class="logo">
-            <p class="tagline"> Plataforma de Coordenação Econômica para Criação de Empresas </p>
-        </header>
+        </div>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <h2>Estamos construindo algo novo para sua cidade</h2>
-            
-            <div class="content">
-                <p>Esta pesquisa é o primeiro passo para o lançamento de uma <strong>plataforma inovadora</strong> que vai transformar investimentos que antes eram inviáveis na sua cidade em oportunidades reais e acessíveis.</p>
-                
-                <p>O objetivo é simples: viabilizar produtos e serviços que você e sua família precisam, mas que hoje não existem localmente — seja por falta de demanda percebida ou de investimento. Através de um <strong>novo modelo de negócio baseado em investimentos comunitários</strong>, queremos trazer para sua cidade aquilo que hoje te obriga a viajar ou simplesmente abrir mão de consumir.</p>
-                
-                <div class="highlight-box">
-                    <h3>💡 Como funciona?</h3>
-                    <p>Moradores investem pequenos valores (a partir de R$ 2.000) para viabilizar negócios que eles mesmos vão usar. Em troca, além do acesso ao serviço, recebem dividendos caso o negócio gere lucro.</p>
-                    <p><strong>É um modelo onde todos ganham:</strong> você tem acesso ao que precisa, ajuda a desenvolver sua cidade, e ainda pode ter retorno financeiro.</p>
-                </div>
-                
-                <p><strong>Em breve, lançaremos um fórum</strong> para aprofundar essas discussões e captar de forma mais detalhada as demandas da comunidade. Por isso, <strong>é fundamental que você seja transparente nas suas respostas</strong> — elas vão direcionar quais negócios serão viabilizados primeiro e em quais cidades.</p>
-                
-                <p class="impact">Este modelo pode mudar a economia da sua cidade, atraindo investimentos reais em produtos e serviços para você, sua família e toda a comunidade.</p>
-                
-                <p class="cta-text"><strong>Sua participação é essencial. Vamos construir isso juntos!</strong></p>
-            </div>
-        </section>
+        <h1 class="coming-soon">Em Breve</h1>
 
-        <!-- Survey Groups -->
-        <section class="survey-section">
-            <h2>Participe da pesquisa da sua região:</h2>
-            <p class="survey-intro">Selecione o grupo correspondente à sua cidade e responda à pesquisa. Leva apenas 5-7 minutos!</p>
-            
-            <div class="groups-container">
-                <!-- Grupo 1 -->
-                <div class="group-card grupo1">
-                    <div class="group-header">
-                        <span class="group-number">GRUPO 1</span>
-                    </div>
-                    <div class="group-cities">
-                        <ul>
-                            <li>Jaguaré</li>
-                            <li>Águia Branca</li>
-                            <li>Mucurici</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn-survey grupo1-btn" onclick="alert('Por favor, adicione o link da pesquisa do Grupo 1 no código HTML'); return false;">
-                        Responder Pesquisa
-                        <span class="arrow">→</span>
-                    </a>
-                </div>
+        <p class="subtitle">
+            Uma nova forma de investir<br>
+            e transformar sua comunidade
+        </p>
 
-                <!-- Grupo 2 -->
-                <div class="group-card grupo2">
-                    <div class="group-header">
-                        <span class="group-number">GRUPO 2</span>
-                    </div>
-                    <div class="group-cities">
-                        <ul>
-                            <li>Alfredo Chaves</li>
-                            <li>Itaguaçu</li>
-                            <li>Bom Jesus do Norte</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn-survey grupo2-btn" onclick="alert('Por favor, adicione o link da pesquisa do Grupo 2 no código HTML'); return false;">
-                        Responder Pesquisa
-                        <span class="arrow">→</span>
-                    </a>
-                </div>
-
-                <!-- Grupo 3 -->
-                <div class="group-card grupo3">
-                    <div class="group-header">
-                        <span class="group-number">GRUPO 3</span>
-                    </div>
-                    <div class="group-cities">
-                        <ul>
-                            <li>Água Doce do Norte</li>
-                            <li>Irupi</li>
-                            <li>Brejetuba</li>
-                            <li>Atílio Vivácqua</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn-survey grupo3-btn" onclick="alert('Por favor, adicione o link da pesquisa do Grupo 3 no código HTML'); return false;">
-                        Responder Pesquisa
-                        <span class="arrow">→</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="info-box">
-                <p><strong>📍 Não encontrou sua cidade?</strong></p>
-                <p>Estamos expandindo para novas regiões em breve! Deixe seu contato na pesquisa para ser avisado quando chegarmos à sua cidade.</p>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2026 Somos S/A - Todos os direitos reservados</p>
-            <p class="footer-note">Uma iniciativa de investimento comunitário para desenvolvimento local</p>
-        </footer>
+        <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
     </div>
+
+    <script>
+        // Criar partículas flutuantes
+        const particlesContainer = document.getElementById('particles');
+        const numberOfParticles = 30;
+
+        for (let i = 0; i < numberOfParticles; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    </script>
 </body>
 </html>
