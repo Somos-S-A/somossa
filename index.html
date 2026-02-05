@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Somos S/A - Plataforma de investimento comunitário">
+    <meta name="description" content="Somos S/A - Debata. Colabore. Crie. Construa.">
     <title>Somos S/A</title>
     <style>
         * {
@@ -59,7 +59,7 @@
 
         /* Logo */
         .logo-container {
-            margin-bottom: 80px;
+            margin-bottom: 40px;
             animation: fadeInDown 1.2s ease-out;
         }
 
@@ -69,10 +69,55 @@
             height: auto;
             filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
             transition: transform 0.3s ease;
+            opacity: 0.9;
         }
 
         .logo:hover {
             transform: scale(1.02);
+            opacity: 1;
+        }
+
+        /* Slogan animado */
+        .slogan-container {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .slogan {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            position: absolute;
+            opacity: 0;
+            animation: fadeInOut 8s infinite;
+        }
+
+        .slogan:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slogan:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .slogan:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        .slogan:nth-child(4) {
+            animation-delay: 6s;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            5% { opacity: 1; transform: translateY(0); }
+            20% { opacity: 1; transform: translateY(0); }
+            25% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 0; transform: translateY(-10px); }
         }
 
         /* Texto "Em Breve" */
@@ -85,35 +130,35 @@
             text-transform: uppercase;
             animation: fadeInUp 1.2s ease-out 0.4s both;
             position: relative;
-            display: inline-block;
         }
 
-        .coming-soon::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #4a90e2, transparent);
-            animation: lineGrow 1s ease-out 1.6s both;
-        }
-
-        @keyframes lineGrow {
-            from { width: 0; }
-            to { width: 60px; }
-        }
-
-        /* Subtítulo */
-        .subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
+        /* Subtítulo "Uma nova forma de investir" */
+        .main-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.3rem;
             font-weight: 300;
             letter-spacing: 2px;
-            line-height: 1.8;
+            margin-bottom: 50px;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        /* Linha decorativa */
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4a90e2, transparent);
+            margin: 40px auto;
             animation: fadeInUp 1.2s ease-out 0.8s both;
-            margin-top: 50px;
+        }
+
+        /* Descrição */
+        .description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            animation: fadeInUp 1.2s ease-out 1s both;
         }
 
         /* Pontos decorativos */
@@ -121,7 +166,7 @@
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin-top: 60px;
+            margin-top: 50px;
             animation: fadeInUp 1.2s ease-out 1.2s both;
         }
 
@@ -218,14 +263,29 @@
                 max-width: 400px;
             }
 
+            .slogan {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+            }
+
+            .slogan-container {
+                height: 50px;
+                margin-bottom: 50px;
+            }
+
             .coming-soon {
                 font-size: 2.5rem;
                 letter-spacing: 8px;
             }
 
-            .subtitle {
-                font-size: 1rem;
+            .main-subtitle {
+                font-size: 1.1rem;
                 letter-spacing: 1px;
+                padding: 0 20px;
+            }
+
+            .description {
+                font-size: 0.95rem;
                 padding: 0 20px;
             }
         }
@@ -235,21 +295,31 @@
                 max-width: 280px;
             }
 
+            .slogan {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .slogan-container {
+                height: 40px;
+                margin-bottom: 40px;
+            }
+
             .coming-soon {
                 font-size: 1.8rem;
                 letter-spacing: 4px;
             }
 
-            .coming-soon::after {
-                width: 40px;
+            .main-subtitle {
+                font-size: 1rem;
             }
 
-            .subtitle {
-                font-size: 0.9rem;
+            .description {
+                font-size: 0.85rem;
             }
 
             .logo-container {
-                margin-bottom: 60px;
+                margin-bottom: 30px;
             }
         }
     </style>
@@ -264,11 +334,25 @@
             <img src="logo.png" alt="Somos S/A" class="logo">
         </div>
 
+        <!-- Slogan animado -->
+        <div class="slogan-container">
+            <span class="slogan">Debata.</span>
+            <span class="slogan">Colabore.</span>
+            <span class="slogan">Crie.</span>
+            <span class="slogan">Construa.</span>
+        </div>
+
         <h1 class="coming-soon">Em Breve</h1>
 
-        <p class="subtitle">
-            Uma nova forma de investir<br>
-            e transformar sua comunidade
+        <p class="main-subtitle">
+            Uma nova forma de investir
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="description">
+            Plataforma de coordenação econômica<br>
+            para criação de empresas
         </p>
 
         <div class="dots">
